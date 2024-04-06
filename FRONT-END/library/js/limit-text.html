@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="short-content-feed">
+        <p>Địa điểm làm việc : TBS Logistics - Đường DT743, Tân Vạn, Bình Dương thông tin công việc: Mô tả Bình Dương
+            thông tin công việc</p>
+    </div>
+    <script>
+        jQuery(document).ready(function ($) {
+            console.log(1);
+            var element = $(".short-content-feed p");
+            truncateText(element, 15); // Thay đổi số từ bạn muốn hiển thị
+
+            function truncateText(element, wordCount) {
+                var words = element.text().split(" ");
+                var truncatedText = words.slice(0, wordCount).join(" ");
+
+                if (words.length > wordCount) {
+                    truncatedText += "...";
+                }
+
+                element.text(truncatedText);
+            }
+        });
+    </script>
+</body>
+
+</html>

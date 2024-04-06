@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        jQuery(function ($) {
+            $('.fgc-address-link').click(function (event) {
+                event.preventDefault();
+                const text = $(this).closest('.swiper-slide').find('.fgc-text-address-hide').text();
+                console.log(text);
+                $('.elementor-custom-embed iframe').attr('src', `https://maps.google.com/maps?q=${text}&t=m&z=14&output=embed&iwloc=near`);
+
+            });
+        });
+    </script>
+</body>
+
+</html>

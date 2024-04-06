@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="text">Lorem ipsum dolor.<strong style="color: red;">aaaaa</strong>Error quasi</h1>
+    <button class="button1">show text</button><br>
+    <button class="button2">show html</button><br>
+
+    <input class="input-value" type="text" value="number value"><br>
+    <button class="show-value">show value</button><br>
+
+    <a class="value-attr" href="google.com"></a><br>
+    <button class="show-value-attr">show value attr</button><br>
+
+    <hr>
+
+
+    <script>
+        jQuery(document).ready(function () {
+
+            //lấy ra nội dung trong thẻ html
+            $(".button1").click(function () {
+                // $("h1").hide();
+                alert("Text:" + $("h1").text());
+            });
+
+            $(".button2").click(function () {
+                alert("html: " + $("h1").html());
+            });
+
+            $(".show-value").click(function () {
+                alert("value: " + $(".input-value").val());
+            });
+
+            $(".show-value-attr").click(function() {
+                alert($(".value-attr").attr("href"));
+            });
+
+            // đặt nội dung vào html
+// https://www.w3schools.com/jquery/jquery_dom_set.asp
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <p>This is a papragraph</p>
+    <button onclick="appendText()">append text</button>
+    <script>
+        function appendText() {
+            var text1 = "<p>Thêm bằng html</p>";
+            var text2 = $("<p></p>").text("thêm bằng jquery");
+            var text3 = document.createElement("p");
+            text3.innerHTML = "thêm bằng DOM";
+            $("body").append(text1,text2,text3);
+        }
+    </script>
+</body>
+</html>

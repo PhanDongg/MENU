@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: relative;
+        }
+        h1::after {
+            position: absolute;
+            left: 0;
+            background-color: #fd7062;
+            content: "";
+            top: 100%;
+            height: 4px;
+            width: 50%;
+        }
+        h2::before {
+            content: "nội dung được chèn trên dạng before";
+            display: block;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>tiêu đề</h1>
+    </div>
+    
+<hr>
+
+    <div>
+        <h2>nội dung gốc</h2>
+    </div>
+</body>
+
+</html>
