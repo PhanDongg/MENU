@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- tác dụng vào plachoder, ko bị mất nó -->
+    <script>
+        jQuery(document).ready(function () {
+            //placehoder input delete
+            const input = document.getElementById("hometrackinput");
+            input.addEventListener("focus", function () {
+                input.removeAttribute("placeholder");
+            });
+            input.addEventListener("blur", function () {
+                input.setAttribute("placeholder", "Example: SIN123456");
+            });
+        });
+    </script>
+</body>
+
+</html>

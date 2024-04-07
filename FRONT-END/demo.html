@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button "Add to Cart" với icon bánh răng và icon tích</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  .add-to-cart-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .add-to-cart-button .spinner-icon {
+    display: none;
+  }
+
+  .add-to-cart-button.clicked .spinner-icon {
+    display: inline-block;
+    animation: spin 2s linear infinite;
+  }
+
+  .add-to-cart-button.clicked .cart-icon {
+    display: none;
+  }
+
+  .add-to-cart-button.clicked .check-icon {
+    display: inline-block;
+  }
+  .fa-shopping-cart:before {
+    content: "\f07a";
+    content: "\f00c";
+}
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+</head>
+<body>
+<button class="add-to-cart-button" onclick="addToCart()">
+  <i class="spinner-icon fas fa-cog"></i>
+  <i class="cart-icon fas fa-shopping-cart"></i>
+  <!-- <i class="check-icon fas fa-check"></i> -->
+  Add to Cart
+</button>
+
+<script>
+  function addToCart() {
+    var button = document.querySelector('.add-to-cart-button');
+    button.classList.add('clicked');
+    
+    // Giả lập AJAX chạy
+    setTimeout(function() {
+      // AJAX chạy xong, thêm sản phẩm vào giỏ hàng thành công
+      button.classList.remove('clicked');
+    }, 2000); // Thời gian giả lập AJAX chạy trong 2 giây
+  }
+</script>
+</body>
+</html>

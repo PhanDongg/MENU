@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        jQuery(document).ready(function () {
+            //tạo popup ở home page
+            $(".search-form-submit").click(function () {
+                $(".searchForm").addClass("searchForm-popup");
+                $(".search-form-input").addClass("search-form-input-popup");
+                $(".search-pop-up").addClass("search-pop-up-overlay");
+                $(".close-popup-detail").addClass("close-popup-close");
+            });
+
+            $(".close-popup-close").click(function () {
+                $(".searchForm").removeClass("searchForm-popup");
+                $(".search-form-input").removeClass("search-form-input-popup");
+                $(".search-pop-up").removeClass("search-form-input-popup");
+                $(".close-popup-detail").removeClass("close-popup-close");
+            });
+
+            //menu trái hover thêm class
+            $(".dropdown-first").hover(
+                function () {
+                    $(".dropdown-menu-horizontal").addClass("js-dropdown-active");
+                },
+                function () {
+                    $(".dropdown-menu-horizontal").removeClass("js-dropdown-active");
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>
