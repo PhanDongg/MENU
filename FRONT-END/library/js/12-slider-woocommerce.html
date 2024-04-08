@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .top-viewed-products {
+	border: 1px solid;
+    text-align: center;
+	display: flex;
+	justify-content: center;
+}
+.product-item h2 {
+	font-size: 14px;
+}
+.fgc-demo-slider {
+    max-width: 1300px;
+    margin: auto;
+	margin-bottom: 30px;
+	border: none;
+	padding: 0 15px;
+}
+.fgc-demo-slider .owl-prev {
+	position: absolute;
+    top: 45%;
+    left: 0;
+}
+.fgc-demo-slider .owl-next {
+	position: absolute;
+    top: 45%;
+    right: 0;
+}
+.fgc-demo-slider .owl-prev, .fgc-demo-slider .owl-next {
+    border-radius: 50%;
+}
+.fgc-demo-slider .owl-prev span, .fgc-demo-slider .owl-next span {
+	color: #fff;
+}
+.fgc-demo-slider .product-item.owl-item {
+    background-color: #fff;
+}
+.fgc-demo-slider img.attachment-thumbnail.size-thumbnail.wp-post-image {
+    padding: 30px;
+}
+.fgc-demo-slider .number-view {
+    padding: 5px 0 20px;
+}
+.product-high-view {
+	max-width: 1300px;
+	text-align: left;
+}
+.product-high-view {
+	max-width: 1300px;
+    text-align: left;
+    margin: auto;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.regular-price {
+	color: rgb(255, 180, 29);
+	font-size: 13px;
+	padding-right: 5px;
+}
+.fgc-demo-slider .added_to_cart {
+	background-color: #0286e7;
+    padding: 5px 20px;
+    margin: 10px 0;
+    display: inline-block;
+}
+.notification-sale {
+	color: #fff;
+    background-color: red;
+    width: 25%;
+    margin: auto;
+    border-radius: 20px;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+.fgc-demo-slider .product-item {
+	position: relative;
+}
+.fgc-demo-slider .custom-cart-btn {
+	margin-bottom: 20px;
+	color: #fff;
+}
+.fgc-demo-slider .star-rating {
+    /* float: right; */
+    overflow: hidden;
+    position: relative;
+    height: 1em;
+    line-height: 1;
+    font-size: 1em;
+    width: 5.4em;
+    font-family: star;
+    font-family: star;
+    margin: auto;
+    font-size: 10px;
+    display: block;
+	padding-bottom: 5px;
+}
+
+.fgc-demo-slider .star-rating:before {
+    content: "sssss";
+    color: #cfc8d8;
+    float: left;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.fgc-demo-slider .star-rating span {
+/* 	width: 40% !important; */
+	display: block;
+	overflow: hidden;
+	float: left;
+	top: 0;
+	left: 0;
+	position: absolute;
+	padding-top: 1.5em;
+}
+.fgc-demo-slider .star-rating span::before {
+    content: "SSSSS";
+    top: 0;
+    position: absolute;
+    left: 0;
+    color: #f5c40e;
+}
+.fgc-demo-slider .product-item a , .fgc-demo-slider .added_to_cart {
+	text-decoration: none;
+}
+.fgc-demo-slider .product-item.owl-item:hover {
+    transform: translateY(-10px);
+}
+.product-hover-items {
+    position: absolute;
+    top: 25px;
+    right: 5px;
+}
+.fgc-demo-slider  .product-hover-items a {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    background: #0286e7;
+    border-radius: 100%;
+    color: #444;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 18px;
+    height: 36px;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 36px;
+	color: #fff;
+	margin-bottom: 10px;
+}
+.fgc-demo-slider .product-hover-items a svg {
+    fill: currentColor;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    height: 18px;
+    width: 18px;
+    color: #fff;
+}
+.fgc-demo-slider .product-hover-items a .text {
+    display: none;
+}
+.fgc-demo-slider .yith-wcwl-add-to-wishlist {
+    margin-top: 0px !important;
+}
+.product-hover-items{
+    opacity: 0;
+}
+.product-item.owl-item.active:hover .product-hover-items{
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+    <?php
+function display_top_viewed_products() {
+    $top_viewed = get_popular_products();
+
+    if ($top_viewed->have_posts()) {
+        ?>
+        <h2 class="product-high-view">Products with the highest views </h2>
+        <div class="fgc-demo-slider top-viewed-products owl-carousel owl-carousel-2 owl-loaded owl-drag">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    <?php
+                    while ($top_viewed->have_posts()) {
+                        $top_viewed->the_post();
+                        $product_views = get_post_meta(get_the_ID(), 'views_count', true);
+                        $product_views_rounded = round($product_views);
+                        $product = wc_get_product(get_the_ID());
+                        $sale_price = $product->get_price();
+                        $regular_price = $product->get_regular_price();
+						global $product;
+    					$rating_count = $product->get_average_rating();
+                        ?>
+                            <!-- hình ảnh sản phẩm -->
+                        <div class="product-item owl-item">
+                            <?php echo get_the_post_thumbnail(get_the_ID(), 'thumbnail'); ?>
+                            <!-- tiêu đề sản phẩm -->
+                            <a href="<?php echo get_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+                            /*
+							<!-- rating star -->
+							<div class="custom-rating">
+								<?php echo wc_get_rating_html($rating_count); ?>
+							</div>
+                            <!-- giá sản phẩm -->
+                            <span class="regular-price">
+								<del>
+                                <?php echo $regular_price . '$'; ?>
+								</del>
+                            </span>
+                            */
+                            <?php if ($sale_price != $regular_price) { ?>
+                                <!-- Hiển thị giá ưu đãi nếu có -->
+                                <span class="sale-price">
+                                    <?php echo $sale_price . '$'; ?>
+                                </span>
+								<div class="notification-sale">Sale !</div>
+                            <?php } ?>
+								<div class="product-hover-items">
+									<?php orchid_store_template_loop_product_quick_link( $product ); ?>
+									<?php /* echo 'aaa'; addonify_compare_products_product_in_stock( $product ) */ ?>
+									<?php /* echo 'dddd'; addonify_compare_products_product_rating( $product ) */ ?>
+							    </div>
+							<!-- đang ưu đãi -->
+							<?php /* do_action( 'orchid_store_loop_sale_flash' ); */ ?>
+							<!-- tiêu đề sản phẩm -->
+							<?php /* do_action( 'orchid_store_shop_loop_item_title' ); */ ?>
+							<!-- sao và giá -->
+							<?php /* do_action( 'woocommerce_after_shop_loop_item_title' ); */?>
+							<!-- nút thêm giỏ hàng -->
+							<?php /* do_action( 'orchid_store_loop_add_to_cart' ); */ ?>
+                            <!-- số lượt xem -->
+                            <div class="number-view">
+                                <?php echo $product_views_rounded . ' people viewed it.'; ?>
+                            </div>
+							
+							    <div class="custom-cart-btn">
+<!--                                 <a href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo get_the_ID(); ?>" class="button add_to_cart_button">Thêm vào giỏ hàng</a><br> -->
+<!-- 									 <a href="" class="button add_to_cart_button">Thêm vào giỏ hàng</a><br> -->
+<!-- 									<a href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo get_the_ID(); ?>" class="button add_to_cart_button">Thêm vào giỏ hàng</a> -->
+									
+													<?php
+														do_action( 'orchid_store_loop_add_to_cart' );
+													?>
+									
+									 <a class="added_to_cart wc-forward" href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo get_the_ID(); ?>" style="display: none;" title="Xem giỏ hàng">Xem giỏ hàng</a>
+                            </div>
+                        </div> <!-- /div.product-item -->
+                    <?php } ?>
+                </div> <!-- /div.owl-stage -->
+            </div> <!-- /div.owl-stage-outer -->
+        </div> <!-- /div.top-viewed-products -->
+<script>
+// 	jQuery(document).ready(function($) {
+// 		$('.fgc-demo-slider .add_to_cart_button').click(function(event) {
+// 			$('.added_to_cart').show();
+// 			event.preventDefault();
+// 		});
+// 		}
+	jQuery(document).ready(function($) {
+    $('.fgc-demo-slider .add_to_cart_button').click(function(event) {
+        $(this).siblings('.added_to_cart').show(); // Hiển thị phần tử .added_to_cart cùng cấp với nút được nhấn
+        event.preventDefault();
+    });
+});
+</script>
+
+        <?php
+        wp_reset_postdata();
+    }
+}
+</body>
+</html>
