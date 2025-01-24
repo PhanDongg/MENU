@@ -18,13 +18,14 @@
         }
         // khởi tạo đối tượng author, user (này là instance như trong java)
         var author = new User('phan', 'dong', 'avatar');
-        var user = new User('phan', 'an', 'avatar');
+        var user = new User('phan', 'tay', 'avatar');
 
         console.log(author);
         console.log(user);
 
-        //thêm thuộc tính riêng cho từng đối tượng
+        // //thêm thuộc tính riêng cho từng đối tượng
         author.comment = 'good job';
+        console.log(author);
         user.title = 'chia se';
 
         console.log(author.getName());

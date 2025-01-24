@@ -9,19 +9,28 @@
 <body>
     <script>
         // ví dụ này chưa hiểu
-        if(!String.prototype.includes) {
-            String.prototype.includes =  function(search, start) {
-                'use strict';
+        // if(!String.prototype.includes) {
+        //     String.prototype.includes =  function(search, start) {
+        //         'use strict';
 
-                if (search instanceof RegExp) {
-                    throw TypeError ('first argument must not be a RegExp');
-                }
-                if (start === undefined) { start = 0;}
-                     return this.indexOf(search, start) !== -1;
-            };
-        };
+        //         if (search instanceof RegExp) {
+        //             throw TypeError ('first argument must not be a RegExp');
+        //         }
+        //         if (start === undefined) { start = 0;}
+        //              return this.indexOf(search, start) !== -1;
+        //     };
+        // };
 
 
+        function test(nummber) {
+            if (nummber % 2 === 0) {
+                console.log('số chẵn');
+            } else {
+                console.log('số lẻ');
+            }
+        }
+
+        test(8);
     </script>
 </body>
 </html>
